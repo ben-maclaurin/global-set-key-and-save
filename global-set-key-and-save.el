@@ -6,9 +6,9 @@
 ;; Maintainer: Ben MacLaurin <hi@benmaclaurin.com>
 ;; Created: 2024
 ;; Version: 0.01
-;; Package-Requires: ((emacs "29") (magit "3.3.0") (plz "0.7"))
+;; Package-Requires: ((emacs "29"))
 ;; Homepage: https://github.com/ben-maclaurin/global-set-key-and-save
-;; Keywords: network, files, tailscale, tramp, transient
+;; Keywords: convenience, keybindings
 
 ;; This file is part of GNU Emacs.
 
@@ -27,17 +27,17 @@
 
 ;;; Commentary:
 
-;; tailmacs is a magit-inspired interface for managing your tailnet in
-;; Emacs. The UI is transient-driven and depends on TRAMP for remote
-;; connections.
+;; global-set-key-and-save provides an interactive function that both sets
+;; a global key binding and saves it to your init file automatically.
 
 ;;; Code:
 
 (defgroup global-set-key-and-save nil
-  "global-set-key-and-save"
+  "Settings for global-set-key-and-save."
   :prefix "global-set-key-and-save-"
   :group 'applications)
 
+;;;###autoload
 (defun global-set-key-and-save (key command)
   "Like global-set-key, but also appends the key binding to init file.
 KEY is the key sequence to bind.
@@ -47,7 +47,7 @@ COMMAND is the command to bind it to."
   
   (let* ((key-str (key-description key))
          (binding-str (format "\n(global-set-key (kbd \"%s\") '%s)" 
-                              key-str command))
+                            key-str command))
          (init-file (or user-init-file "~/.emacs")))
     
     (with-temp-buffer
@@ -57,4 +57,5 @@ COMMAND is the command to bind it to."
     (message "Bound %s to %s and saved to %s" 
              key-str command (file-name-nondirectory init-file))))
 
+(provide 'global-set-key-and-save)
 ;;; global-set-key-and-save.el ends here
