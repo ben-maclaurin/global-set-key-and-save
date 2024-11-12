@@ -36,7 +36,7 @@
 (defgroup global-set-key-and-save nil
   "global-set-key-and-save"
   :prefix "global-set-key-and-save-"
-  :group 'applications
+  :group 'applications)
 
 (defun global-set-key-and-save (key command)
   "Like global-set-key, but also appends the key binding to init file.
