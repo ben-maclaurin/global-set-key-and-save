@@ -33,6 +33,11 @@
 
 ;;; Code:
 
+(defgroup global-set-key-and-save nil
+  "global-set-key-and-save"
+  :prefix "global-set-key-and-save-"
+  :group 'applications
+
 (defun global-set-key-and-save (key command)
   "Like global-set-key, but also appends the key binding to init file.
 KEY is the key sequence to bind.
@@ -51,3 +56,5 @@ COMMAND is the command to bind it to."
     
     (message "Bound %s to %s and saved to %s" 
              key-str command (file-name-nondirectory init-file))))
+
+;;; global-set-key-and-save.el ends here
